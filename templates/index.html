@@ -1,0 +1,80 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tip Calculator</title>
+  <style>
+    body {
+      background: #f0f8ff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    h1 {
+      font-family: 'Cursive', cursive;
+      font-size: 2.5em;
+      color: #333;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: inline-block;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input, select {
+      padding: 10px;
+      margin-bottom: 15px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #000;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to the Tip Calculator!</h1>
+  <form action="/calculate" method="post">
+    <label for="bill">Total Bill ($):</label>
+    <input type="number" step="0.01" name="bill" id="bill" placeholder="e.g. 100.00" required>
+
+    <label for="tip">Tip Percentage:</label>
+    <select name="tip" id="tip">
+      <option value="10">10%</option>
+      <option value="12">12%</option>
+      <option value="15">15%</option>
+    </select>
+
+    <label for="people">Number of People:</label>
+    <input type="number" name="people" id="people" placeholder="e.g. 4" required>
+
+    <button type="submit">Calculate</button>
+  </form>
+
+  {% if result %}
+    <div class="result">
+      <p>Each person should pay: <strong>${{ result }}</strong></p>
+    </div>
+  {% endif %}
+</body>
+</html>
